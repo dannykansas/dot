@@ -44,16 +44,6 @@ setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_SAVE_NO_DUPS
 setopt HIST_REDUCE_BLANKS
 
-# Git aliases
-alias gs='git status'
-#alias ga='git add'
-alias gc='git commit'
-#alias gp='git push'
-#alias gl='git pull'
-#alias gd='git diff'
-alias gco='git checkout'
-alias gb='git branch'
-
 # Custom prompt with git branch
 setopt PROMPT_SUBST
 PROMPT='%F{green}%n@%m%f:%F{blue}%~%f %F{red}${vcs_info_msg_0_}%f$ '
