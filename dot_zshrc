@@ -1,0 +1,62 @@
+# Enable Powerlevel10k instant prompt
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+# Source Powerlevel10k
+source $(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme
+
+# Source all configuration files
+for conf in "$HOME/.config/zsh/"*.zsh; do
+  source "${conf}"
+done
+
+# Load version control information
+autoload -Uz vcs_info
+precmd() { vcs_info }
+
+# Load version control information
+autoload -Uz vcs_info
+precmd() { vcs_info }
+
+# Format the vcs_info_msg_0_ variable
+zstyle ':vcs_info:git:*' formats '%b'
+
+# Enable colors and completion
+autoload -U colors && colors
+autoload -U compinit && compinit
+
+# Set up git completion
+zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash
+fpath=(~/.zsh $fpath)
+
+# Basic key bindings
+bindkey -e  # Use emacs key bindings
+bindkey '^[[A' up-line-or-search
+bindkey '^[[B' down-line-or-search
+
+# History settings
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+setopt appendhistory
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_SAVE_NO_DUPS
+setopt HIST_REDUCE_BLANKS
+
+# Git aliases
+alias gs='git status'
+#alias ga='git add'
+alias gc='git commit'
+#alias gp='git push'
+#alias gl='git pull'
+#alias gd='git diff'
+alias gco='git checkout'
+alias gb='git branch'
+
+# Custom prompt with git branch
+setopt PROMPT_SUBST
+PROMPT='%F{green}%n@%m%f:%F{blue}%~%f %F{red}${vcs_info_msg_0_}%f$ '
+
+# krew path setup (for kubectl)
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
