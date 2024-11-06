@@ -1,7 +1,10 @@
+export EDITOR="vim"  # trying to fix weird chezmoi behavior
+export VISUAL="vim"  # where it spawns lots of zsh shells
+
 # Enable Powerlevel10k instant prompt
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+#  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+# fi
 
 # Source Powerlevel10k
 source $(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme
@@ -10,10 +13,6 @@ source $(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme
 for conf in "$HOME/.config/zsh/"*.zsh; do
   source "${conf}"
 done
-
-# Load version control information
-autoload -Uz vcs_info
-precmd() { vcs_info }
 
 # Load version control information
 autoload -Uz vcs_info
