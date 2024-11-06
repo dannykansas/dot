@@ -60,7 +60,7 @@
   typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
     command_execution_time    # previous command duration
     virtualenv                # python virtual environment
-    context                   # user@host
+    # context                   # user@host
     # time                    # current time
   )
 
@@ -103,7 +103,7 @@
   typeset -g POWERLEVEL9K_CONTEXT_TEMPLATE="%F{$grey}%n@%m%f"
   # Don't show context unless root or in SSH.
   typeset -g POWERLEVEL9K_CONTEXT_{DEFAULT,SUDO}_CONTENT_EXPANSION=
-
+  typeset -g POWERLEVEL9K_ALWAYS_SHOW_CONTEXT=true
   # Show previous command duration only if it's >= 5s.
   typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_THRESHOLD=5
   # Don't show fractional seconds. Thus, 7s rather than 7.3s.
