@@ -1,4 +1,16 @@
 eval $(/opt/homebrew/bin/brew shellenv)
 
-alias gs='git status'
-alias ll='ls -la'
+# ------------- Add SSH key to keychain ------------- #
+#   - Only run once per login via .zprofile
+#   - This may require admin credentials each time
+#   - An alternative, in-mem-only option is commented out below.
+if ! ssh-add -l | grep -q "id_ed25519"; then
+    ssh-add --apple-use-keychain ~/.ssh/id_ed25519 2>/dev/null
+fi
+
+# ---- old method of loading keys into ssh-agent --- #
+#   - Checks if key is loaded first
+#   - Only loads if not in memory already
+#if ! ssh-add -l | grep -q "id_ed25519"; then
+#    ssh-add ~/.ssh/id_ed25519 2>/dev/null
+#fi

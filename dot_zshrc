@@ -1,6 +1,8 @@
 export EDITOR="vim"  # trying to fix weird chezmoi behavior
 export VISUAL="vim"  # where it spawns lots of zsh shells
 
+source <(fzf --zsh)
+
 # Enable Powerlevel10k instant prompt
 # if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
 #  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
