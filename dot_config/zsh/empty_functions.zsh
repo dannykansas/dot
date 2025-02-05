@@ -29,3 +29,8 @@ gfind() {
     git log --all --grep="$1"
 }
 
+### AWS
+ECR_PROXY_ENDPOINT=`aws ecr get-authorization-token --output text --query 'authorizationData[].proxyEndpoint' --region us-west-2`
+_ecr_login() {
+	aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin $ECR_PROXY_ENDPOINT
+}
