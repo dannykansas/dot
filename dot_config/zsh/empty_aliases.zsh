@@ -1,6 +1,7 @@
 # generic aliases
 alias ll='ls -la'
 alias lh='ls -lha'
+alias ls-la='ls -la' # typo alias
 
 # git aliases
 alias gs='git status'
