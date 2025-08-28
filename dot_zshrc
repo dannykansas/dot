@@ -6,8 +6,8 @@
 ##    - Simple Subsection    = "# {description}    "
 ##    - Orphaned Settings    = "# !orphaned        "
 
-# Amazon Q pre block. Keep at the top of this file.
-[[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh"
+# === Quick Tests / Changes ===== #
+
 export EDITOR="vim"  # trying to fix weird chezmoi behavior
 export VISUAL="vim"  # where it spawns lots of zsh shells
 
@@ -106,6 +106,3 @@ eval "$(pyenv virtualenv-init -)"
 
 # ========================== #
 # == End Orphaned Configs == #
-
-# Amazon Q post block. Keep at the bottom of this file.
-[[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh"
