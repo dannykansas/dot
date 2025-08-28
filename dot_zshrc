@@ -1,22 +1,28 @@
+## Comment Block Reference/Key:
+## ----------------------------
+##   Try to comment every addition and why
+##    - Automatic Flagging   = "# !important       "
+##    - Logical Sections     = "# == {section} == #" 
+##    - Simple Subsection    = "# {description}    "
+##    - Orphaned Settings    = "# !orphaned        "
+
 # Amazon Q pre block. Keep at the top of this file.
 [[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh"
 export EDITOR="vim"  # trying to fix weird chezmoi behavior
 export VISUAL="vim"  # where it spawns lots of zsh shells
 
-# testing nathan's weird command
-remember ()
-{
-    return
-}
+# === Terminal Customizations === #
 
+# Enable fzf
 source <(fzf --zsh)
 
 # Enable Powerlevel10k instant prompt
-# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-#  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-# fi
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
 
-# Source Powerlevel10k
+# ====== p10k Setup =========
+# Source Powerlevel10k Theme
 source $(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme
 
 # Source all configuration files
@@ -24,27 +30,17 @@ for conf in "$HOME/.config/zsh/"*.zsh; do
   source "${conf}"
 done
 
-# Load version control information
-autoload -Uz vcs_info
-precmd() { vcs_info }
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# Format the vcs_info_msg_0_ variable
-zstyle ':vcs_info:git:*' formats '%b'
 
-# Enable colors and completion
-autoload -U colors && colors
-autoload -U compinit && compinit
-
-# Set up git completion
-zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash
-fpath=(~/.zsh $fpath)
-
-# Basic key bindings
+# ===== Basic key bindings ==
 bindkey -e  # Use emacs key bindings
 bindkey '^[[A' up-line-or-search
 bindkey '^[[B' down-line-or-search
 
-# History settings
+# !important
+# ===== History settings ====
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
@@ -53,25 +49,57 @@ setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_SAVE_NO_DUPS
 setopt HIST_REDUCE_BLANKS
 
+# ==== Shell Prompt Setup ==
 # Custom prompt with git branch
 setopt PROMPT_SUBST
 PROMPT='%F{green}%n@%m%f:%F{blue}%~%f %F{red}${vcs_info_msg_0_}%f$ '
 
-# all path modifications here to avoid overly long PATH length
+# !important
+# ==== MAIN PATH SETUP ====
+# All manual path mods should go here to ensure succinct path
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:/Users/danny/.local/bin:$PATH"
 
+# ==== p10k Setup =========
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# ==== Golang Setup ====
+# ==== Golang Setup ======
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 
-# ===== pyenv setup ===
+# ===== pyenv setup ======
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init - zsh)"
 eval "$(pyenv virtualenv-init -)"
+
+# Amazon Q post block. Keep at the bottom of this file.
+[[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh"
+
+# === Orphaned Configs === #
+# ======================== #
+
+# !orphaned - 2025-08-27
+# Load version control information
+#autoload -Uz vcs_info
+#precmd() { vcs_info }
+
+# !orphaned - 2025-08-27
+# Format the vcs_info_msg_0_ variable
+#zstyle ':vcs_info:git:*' formats '%b'
+
+# !orphaned - 2025-08-27
+# Enable colors and completion
+#autoload -U colors && colors
+#autoload -U compinit && compinit
+
+# !orphaned - 2025-08-27
+# Set up git completion
+#zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash
+#fpath=(~/.zsh $fpath)
+
+# ========================== #
+# == End Orphaned Configs == #
 
 # Amazon Q post block. Keep at the bottom of this file.
 [[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh"
