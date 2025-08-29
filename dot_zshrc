@@ -1,3 +1,11 @@
+## Overview:
+## ---------------------------
+## Main files:
+##  - ~/.zshrc
+##  - ~/.zprofile
+##  - ~/.profile  <-- not managed in vcs
+##  - ~/.config/zsh/{aliases|functions}.sh
+
 ## Comment Block Reference/Key:
 ## ----------------------------
 ##   Try to comment every addition and why
