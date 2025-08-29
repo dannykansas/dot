@@ -11,7 +11,12 @@
 export EDITOR="vim"  # trying to fix weird chezmoi behavior
 export VISUAL="vim"  # where it spawns lots of zsh shells
 
-# === Terminal Customizations === #
+# !important
+# ==== MAIN PATH SETUP ====
+# All manual path mods should go here to ensure succinct path
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:/Users/${USER}/.local/bin:$PATH"
+
+# ==== Terminal Customizations === #
 
 # Enable fzf
 source <(fzf --zsh)
@@ -48,21 +53,24 @@ autoload -U compinit && compinit
 # Format the vcs_info_msg_0_ variable
 zstyle ':vcs_info:git:*' formats '%b'
 
+# Custom prompt with git branch
+setopt PROMPT_SUBST
+PROMPT='%F{green}%n@%m%f:%F{blue}%~%f %F{red}${vcs_info_msg_0_}%f$ '
+
+# === End Customize Terminal ==== #
 
 # !important
-# ====== Secrets MGMT ========
-# Sources a single file where `op get` commands
-# can inject env vars for custom secrets.
-#   - Never checked in to vcs
+# ====== Secrets MGMT ============
+#   - Never checked into vcs
+#   - Uses `op get` for safe load
 [[ ! -f ~/.profile ]] || source ~/.profile
 
-# ===== Basic key bindings ========
-bindkey -e  # Use emacs key bindings
+# ===== Custom key bindings ======
+bindkey -e # Use emacs key bindings
 bindkey '^[[A' up-line-or-search
 bindkey '^[[B' down-line-or-search
 
-# !important
-# ===== History settings ====
+# ===== History settings =========
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
@@ -71,21 +79,11 @@ setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_SAVE_NO_DUPS
 setopt HIST_REDUCE_BLANKS
 
-# ==== Shell Prompt Setup ==
-# Custom prompt with git branch
-setopt PROMPT_SUBST
-PROMPT='%F{green}%n@%m%f:%F{blue}%~%f %F{red}${vcs_info_msg_0_}%f$ '
-
-# !important
-# ==== MAIN PATH SETUP ====
-# All manual path mods should go here to ensure succinct path
-export PATH="${KREW_ROOT:-$HOME/.krew}/bin:/Users/danny/.local/bin:$PATH"
-
-# ==== Golang Setup ======
+# ==== Golang Setup ==============
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 
-# ===== pyenv setup ======
+# ===== pyenv setup ==============
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init - zsh)"
@@ -94,13 +92,10 @@ eval "$(pyenv virtualenv-init -)"
 # Amazon Q post block. Keep at the bottom of this file.
 [[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh"
 
-# === Orphaned Configs === #
-# ======================== #
+# ===== Orphaned Configs ===== #
+# ============================ #
 
-# !orphaned - 2025-08-27
-# Enable colors and completion
-#autoload -U colors && colors
-#autoload -U compinit && compinit
+# none currently #
 
-# ========================== #
-# == End Orphaned Configs == #
+# ============================ #
+# === End Orphaned Configs === #
