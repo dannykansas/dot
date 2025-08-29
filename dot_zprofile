@@ -11,12 +11,5 @@ if ! ssh-add -l | grep -q "id_ed25519"; then
     ssh-add --apple-use-keychain ~/.ssh/id_ed25519 2>/dev/null
 fi
 
-# ---- old method of loading keys into ssh-agent --- #
-#   - Checks if key is loaded first
-#   - Only loads if not in memory already
-#if ! ssh-add -l | grep -q "id_ed25519"; then
-#    ssh-add ~/.ssh/id_ed25519 2>/dev/null
-#fi
-
 # Amazon Q post block. Keep at the bottom of this file.
 [[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh"

@@ -13,6 +13,10 @@ export VISUAL="vim"  # where it spawns lots of zsh shells
 
 # === Terminal Customizations === #
 
+# Set up git completion
+zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash
+fpath=(~/.zsh $fpath)
+
 # Enable fzf
 source <(fzf --zsh)
 
