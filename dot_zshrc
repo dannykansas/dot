@@ -13,10 +13,6 @@ export VISUAL="vim"  # where it spawns lots of zsh shells
 
 # === Terminal Customizations === #
 
-# Set up git completion
-zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash
-fpath=(~/.zsh $fpath)
-
 # Enable fzf
 source <(fzf --zsh)
 
@@ -36,6 +32,22 @@ done
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Set up git completion
+zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash
+fpath=(~/.zsh $fpath)
+
+# Load version control information
+autoload -Uz vcs_info
+precmd() { vcs_info }
+
+# Enable colors and completion
+autoload -U colors && colors
+autoload -U compinit && compinit
+
+# Format the vcs_info_msg_0_ variable
+zstyle ':vcs_info:git:*' formats '%b'
+
 
 # !important
 # ====== Secrets MGMT ========
@@ -69,10 +81,6 @@ PROMPT='%F{green}%n@%m%f:%F{blue}%~%f %F{red}${vcs_info_msg_0_}%f$ '
 # All manual path mods should go here to ensure succinct path
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:/Users/danny/.local/bin:$PATH"
 
-# ==== p10k Setup =========
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
 # ==== Golang Setup ======
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
@@ -90,23 +98,9 @@ eval "$(pyenv virtualenv-init -)"
 # ======================== #
 
 # !orphaned - 2025-08-27
-# Load version control information
-#autoload -Uz vcs_info
-#precmd() { vcs_info }
-
-# !orphaned - 2025-08-27
-# Format the vcs_info_msg_0_ variable
-#zstyle ':vcs_info:git:*' formats '%b'
-
-# !orphaned - 2025-08-27
 # Enable colors and completion
 #autoload -U colors && colors
 #autoload -U compinit && compinit
-
-# !orphaned - 2025-08-27
-# Set up git completion
-#zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash
-#fpath=(~/.zsh $fpath)
 
 # ========================== #
 # == End Orphaned Configs == #
