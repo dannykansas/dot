@@ -12,3 +12,7 @@ alias tfs='terraform show'
 alias tfp='terraform plan'
 alias tfa='terraform apply'
 alias tf_state_snoop='echo "aws s3 cp s3://companyname-tfstate/path/to/state/terraform.tfstate - | grep terraform_version"'
+
+# telepresence aliases
+alias tc='telepresence connect'
+alias tq='telepresence quit'
