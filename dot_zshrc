@@ -22,11 +22,11 @@ export VISUAL="vim"  # where it spawns lots of zsh shells
 # !important
 # ==== MAIN PATH SETUP ====
 # All manual path mods should go here to ensure succinct path
-export PATH="${KREW_ROOT:-$HOME/.krew}/bin:/Users/${USER}/.local/bin:$PATH"
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:/Users/${USER}/.local/bin:$HOME/.atuin/bin:$PATH"
 
 # ==== Terminal Customizations === #
 
-# Enable fzf
+# Sourcee fzf
 source <(fzf --zsh)
 
 # Enable Powerlevel10k instant prompt
