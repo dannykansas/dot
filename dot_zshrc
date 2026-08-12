@@ -47,7 +47,7 @@ done
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # Set up ripgrep (rg) completion
-source ~/.zsh/rg-completion.bash
+# zsh-native (~/.zsh/_rg), autoloaded via fpath below -- do not source directly
 
 # Set up git completion
 zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash
