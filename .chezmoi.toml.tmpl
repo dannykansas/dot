@@ -1,0 +1,8 @@
+{{- /* Prompts once on `chezmoi init`, then stores the answers in the private
+       ~/.config/chezmoi/chezmoi.toml. Nothing here reveals the values. */ -}}
+{{- $gitName := promptStringOnce . "gitName" "Git author name" -}}
+{{- $gitEmail := promptStringOnce . "gitEmail" "Git author email" -}}
+
+[data]
+    gitName = {{ $gitName | quote }}
+    gitEmail = {{ $gitEmail | quote }}
