@@ -29,6 +29,19 @@ gfind() {
     git log --all --grep="$1"
 }
 
+# Show files changed on this branch vs a base (default origin/main).
+# Three dots compare against where the branch split off, so this matches the PR's
+# "Files changed" tab. Two dots (main..HEAD) also show everything merged to main
+# since, which is a lot of noise in a busy repo.
+git-diff-filenames() {
+    git diff --name-status "${1:-origin/main}...HEAD"
+}
+
+# Same list as a tree (with --fromfile, "." makes tree read paths from stdin)
+git-diff-filename-tree() {
+    git diff --name-only "${1:-origin/main}...HEAD" | tree --fromfile .
+}
+
 # Clone over ssh; bare repo name assumes $DEFAULT_GITHUB_ORG (set in ~/.profile)
 clone() {
     local repo="${1%.git}"

@@ -108,12 +108,3 @@ eval "$(pyenv virtualenv-init -)"
 # ============================ #
 # === End Orphaned Configs === #
 export PATH="/Users/danny/.local/bin:$PATH"
-#
-# Alias to quickly show changes vs. main by filename
-# Move to somewhere more proper like ~/.config/git/
-# Use three dots. origin/main...HEAD compares against the point where the branch split from main. 
-# Only shows what the branch changed, the same list as the PR's "Files changed" tab. 
-# Alternatively: Two dots (main..HEAD) compares the two branch ends directly (which shows a lot of noise if it's a busy repo with many merges to main since the PR was cut)
-alias git-diff-filenames="git diff --name-status origin/main...HEAD"
-# Or, use --name-only to pipe through tree: 
-alias git-diff-filename-tree="git diff --name-only origin/main...HEAD | tree --fromfile ."
