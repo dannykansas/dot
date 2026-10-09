@@ -107,4 +107,3 @@ eval "$(pyenv virtualenv-init -)"
 
 # ============================ #
 # === End Orphaned Configs === #
-export PATH="/Users/danny/.local/bin:$PATH"
