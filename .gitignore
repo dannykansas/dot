@@ -1,0 +1,3 @@
+# Backstop: plaintext secrets files never belong in this public repo, even if
+# `chezmoi add` picks one up. Encrypted copies (*.age, *.asc) are not matched.
+*secrets.zsh

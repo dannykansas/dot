@@ -7,3 +7,8 @@ eval $(/opt/homebrew/bin/brew shellenv)
 if ! ssh-add -l | grep -q "id_ed25519"; then
     ssh-add --apple-use-keychain ~/.ssh/id_ed25519 2>/dev/null
 fi
+
+# ------------- Local secrets ------------- #
+#   - Private env vars live in ~/.secrets.zsh, which chezmoi does not manage
+#   - Never add it to this repo: it is public
+[[ ! -f ~/.secrets.zsh ]] || source ~/.secrets.zsh
