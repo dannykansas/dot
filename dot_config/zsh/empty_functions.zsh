@@ -60,7 +60,9 @@ clone() {
 }
 
 ### AWS
-ECR_PROXY_ENDPOINT=`aws ecr get-authorization-token --output text --query 'authorizationData[].proxyEndpoint' --region us-west-2`
+# Looks up the registry endpoint per call rather than at every shell startup
 _ecr_login() {
-	aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin $ECR_PROXY_ENDPOINT
+	local endpoint
+	endpoint=$(aws ecr get-authorization-token --output text --query 'authorizationData[].proxyEndpoint' --region us-west-2) || return
+	aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin "$endpoint"
 }
